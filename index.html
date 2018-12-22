@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>小獅子音樂</title>
+    <link rel="stylesheet" href="./stylesheets/screen.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+
+    <div class=container>
+        <div id="question"><i class="far fa-question-circle"></i></div>
+        <div class="finish">演奏完成</div>
+        <div class="white-key" type="button" data-id="0" onmousedown=mousedown(0)>
+            <a href="#"></a>
+
+        </div>
+        <div class="black-key" data-id="1" onmousedown=mousedown(1)>
+            <a href=""></a>
+        </div>
+
+        <div class="white-key re" data-id="2" onmousedown=mousedown(2)>
+            <a href="#"></a>
+
+        </div>
+        <div class="black-key re_l" data-id="3" onmousedown=mousedown(3)>
+            <a href=""></a>
+        </div>
+
+        <div class="white-key mi" data-id="4" onmousedown=mousedown(4)>
+            <a href="#"></a>
+
+        </div>
+        <div class="white-key fa" data-id="5" onmousedown=mousedown(5)>
+            <a href="#"></a>
+
+
+        </div>
+        <div class="black-key fa_l" data-id="6" onmousedown=mousedown(6)>
+            <a href=""></a>
+        </div>
+
+
+        <div class="white-key so" data-id="7" onmousedown=mousedown(7)>
+            <a href="#"></a>
+
+        </div>
+        <div class="black-key so_l" data-id="8" onmousedown=mousedown(8)>
+            <a href=""></a>
+        </div>
+        <div class="white-key la" data-id="9" onmousedown=mousedown(9)>
+            <a href="#"></a>
+
+        </div>
+        <div class="black-key la_l" data-id="10" onmousedown=mousedown(10)>
+            <a href=""></a>
+        </div>
+        <div class="white-key si" data-id="11" onmousedown=mousedown(11)>
+            <a href="#"></a>
+
+        </div>
+        <div class="white-key do2" data-id="12" onmousedown=mousedown(12)>
+            <a href="#"></a>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+</body>
+<script src="./js/lowLag.js"></script>
+<script src="./js/soundmanager2.js"></script>
+<script src="./js/jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function() {
+        lowLag.init({
+            'urlPrefix': './piano-audio/'
+        });
+        lowLag.load("do.mp3", "do");
+        lowLag.load("do_l.mp3", "do_l");
+        lowLag.load("re.mp3", "re");
+        lowLag.load("re_l.mp3", "re_l");
+        lowLag.load("mi.mp3", "mi");
+        lowLag.load("fa.mp3", "fa");
+        lowLag.load("fa_l.mp3", "fa_l");
+        lowLag.load("so.mp3", "so");
+        lowLag.load("so_l.mp3", "so_l");
+        lowLag.load("la.mp3", "la");
+        lowLag.load("la_l.mp3", "la_l");
+        lowLag.load("si.mp3", "si");
+        lowLag.load("do2.mp3", "do2");
+    })
+
+
+    a = Math.floor(Math.random() * 3);
+
+    ques = ["C_chord", "D_chord", "小星星"];
+    $('#question').append("請彈出" + ques[a]);
+    abcd = [];
+
+
+
+    function mousedown(b) {
+        array = ["do", "do_l", "re", "re_l", "mi", "fa", "fa_l", "so", "so_l", "la", "la_l", "si", "do2"];
+        abcd.push(b);
+
+        // var audio = document.getElementById(array[a]);
+        // audio.currentTime = 0.3;
+        lowLag.play(array[b]);
+    }
+
+
+
+
+
+
+    $(".finish").on('click', function() {
+        if (a == 0) {
+
+            var abcd_s = abcd.sort();
+            var abcd_str = abcd_s.toString();
+            console.log(abcd_str);
+
+            if (abcd_str === [0, 4, 7].toString()) {
+                alert("yes");
+            } else if (abcd_str === [12, 4, 7].toString()) {
+                alert("yes");
+            } else {
+                alert("No");
+            }
+        } else if (a == 1) {
+            var abcd_s = abcd.sort();
+            var abcd_str = abcd_s.toString();
+            console.log(abcd_str);
+
+            if (abcd_str === [2, 6, 9].toString()) {
+                alert("yes");
+
+            } else {
+                alert("No");
+            }
+        } else {
+            // var abcd_s = abcd.sort();
+            var abcd_str = abcd.toString();
+            console.log(abcd_str);
+
+            if (abcd_str === [0, 0, 7, 7, 9, 9, 7, 5, 5, 4, 4, 2, 2, 0, 7, 7, 5, 5, 4, 4, 2, 7, 7, 5, 5, 4, 4, 2, 0, 0, 7, 7, 9, 9, 7, 5, 5, 4, 4, 2, 2, 0].toString()) {
+                alert("yes");
+
+            } else {
+                alert("No");
+            }
+        }
+    })
+</script>
+
+
+
+</html>
